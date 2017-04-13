@@ -1,7 +1,7 @@
 # 666 Caballeros de la Muerte
 
 **Integrantes:**
-* Leah Bracken.
+* Leah S. Bracken.
 * Roberto Melita.
 * Felipe Quezada.
 * Javier Rojas.
