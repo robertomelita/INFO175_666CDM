@@ -16,3 +16,7 @@
 **Feedback (Primera presentación):**
 * Vista general no es clara.
 * No se aprovecha el espacio en pantalla (la posicion no significa nada).
+
+**Feedback (Segunda presentacion):**
+* Vista general secundaria (matriz), quedará como la principal y única.
+* No comparar los grupos; comparar las actividades entre si.
