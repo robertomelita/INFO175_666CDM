@@ -14,7 +14,7 @@ function main(){
           buckets = 9,
           colors = ["#4d004d","#660066","#800080","#990099","#b300b3","#cc00cc","#e600e6","#ff00ff","#ff1aff"], // alternatively colorbrewer.YlGnBu[9]
           days = ["P", "Q", "E", "A-E", "-", "-", "-"],
-          times = ["1a", "2a", "3a", "4a", "5a", "6a", "7a", "8a", "9a", "10a", "11a", "12a", "1p", "2p", "3p", "4p", "5p", "6p", "7p", "8p", "9p", "10p", "11p", "12p"];
+          times = ["T1a", "T2a", "T3a", "T4a", "T5a", "T6a", "T7a", "T8a", "T9a", "T10a", "T11a", "T12a", "1p", "2p", "3p", "4p", "5p", "6p", "7p", "8p", "9p", "10p", "11p", "12p"];
           datasets = ["test1.tsv", "test2.tsv"];
 
       var svg = d3.select("#chart").append("svg")
