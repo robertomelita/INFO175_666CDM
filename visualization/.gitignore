@@ -1,4 +1,10 @@
 /build/
+<<<<<<< HEAD
 /WebContent/WEB-INF/
 /WebContent/META-INF/
 /.settings/
+=======
+/WebContent/WEB-INF
+/WebContent/META-INF
+/.settings
+>>>>>>> Melo
