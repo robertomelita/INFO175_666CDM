@@ -17,6 +17,14 @@
 * Vista general no es clara.
 * No se aprovecha el espacio en pantalla (la posicion no significa nada).
 
-**Feedback (Segunda presentacion):**
+**Feedback (Segunda presentación):**
 * Vista general secundaria (matriz), quedará como la principal y única.
 * No comparar los grupos; comparar las actividades entre si.
+
+**Feedback (Tercera presentación):**
+* Incorporar tamaño como metodo de comparación.
+* Ejemplos:
+* Comparar por número de intentos o tiempo.
+* Usar otra escala de color para examples y examples animation.
+* Comparar por relación de repuestas correctas o fallidas
+* Por lo tanto cambiaremos el esquema para adecuarnos.
