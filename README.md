@@ -26,5 +26,5 @@
 * Ejemplos:
 * Comparar por número de intentos o tiempo.
 * Usar otra escala de color para examples y examples animation.
-* Comparar por relación de repuestas correctas o fallidas
+* Comparar por relación de repuestas correctas o fallidas.
 * Por lo tanto cambiaremos el esquema para adecuarnos.
