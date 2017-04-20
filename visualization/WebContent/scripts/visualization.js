@@ -12,7 +12,7 @@ function main(){
           gridSize = Math.floor(width / 24),
           legendElementWidth = gridSize*2,
           buckets = 9,
-          colors = ["#ffffd9","#edf8b1","#c7e9b4","#7fcdbb","#41b6c4","#1d91c0","#225ea8","#253494","#081d58"], // alternatively colorbrewer.YlGnBu[9]
+          colors = ["#4d004d","#660066","#800080","#990099","#b300b3","#cc00cc","#e600e6","#ff00ff","#ff1aff"], // alternatively colorbrewer.YlGnBu[9]
           days = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"],
           times = ["T1", "T2", "T3", "T4", "T5", "T6", "T7", "T8", "T9", "T10", "T11", "T12", "T13", "T14", "T15", "T16", "T17", "T18V", "T19E", "20R", "21A", "22Q", "23L", "12p"];
           datasets = ["test1.tsv", "test2.tsv"];
