@@ -1,1 +1,4 @@
 /build/
+/WebContent/WEB-INF/
+/WebContent/META-INF/
+/.settings/
