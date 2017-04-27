@@ -28,3 +28,7 @@
 * Usar otra escala de color para examples y examples animation.
 * Comparar por relación de repuestas correctas o fallidas.
 * Por lo tanto cambiaremos el esquema para adecuarnos.
+**Feedback (cuarta presentación):**
+* incorporar mockup de despliegue por topico.
+* incorporar popularidad como parametro principal.
+* parametro tiempo será visualizado con un mouse over
