@@ -1,14 +1,14 @@
 [
     {
-        topicname :   String
+        topicname :   VARCHAR[255]
         quizpet :   [
                         { 
                             appid : INT,
                             durationseconds : FLOAT,
-                            intentos** : INT,
+                            intentos : INT,
                             result : INT,
-                            activityname: String,
-                            concurrencia** : INT
+                            activityname: VARCHAR[255],
+                            concurrencia : INT
                         },...
                         
                     ]
@@ -17,16 +17,16 @@
                         { 
                             appid : INT,
                             durationseconds : FLOAT,
-                            intentos** : INT,
+                            intentos : INT,
                             result : INT,
-                            activityname: String,
-                            concurrencia** : INT
+                            activityname: VARCHAR[255],
+                            concurrencia : INT
                         },...
                     ]
                     
         animatedex :  [
                         {
-                            parentname : String,
+                            parentname : VARCHAR[255],
                             appid : INT,
                             durationseconds : FLOAT, 
                             concurrencia : INT
@@ -35,7 +35,7 @@
                     
         annotatedex : [
                         {
-                            parentname : String,
+                            parentname : VARCHAR[255],
                             appid : INT,
                             durationinseconds : FLOAT, 
                             concurrencia : INT,
