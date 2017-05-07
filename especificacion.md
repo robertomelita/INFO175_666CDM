@@ -1,3 +1,5 @@
+#Especificacion de JSON
+
 [
     {
         topicname :   VARCHAR[255]
@@ -26,19 +28,19 @@
                     
         animatedex :  [
                         {
-                            parentname : VARCHAR[255],
+                            activityname : VARCHAR[255],
                             appid : INT,
                             durationseconds : FLOAT, 
-                            concurrencia : INT
+                            popularity : INT
                         },...
                     ]
                     
         annotatedex : [
                         {
-                            parentname : VARCHAR[255],
+                            activitiname : VARCHAR[255],
                             appid : INT,
                             durationinseconds : FLOAT, 
-                            concurrencia : INT,
+                            popularity : INT,
                         },...
                     ]
     },...
