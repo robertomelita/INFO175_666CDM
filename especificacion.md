@@ -1,5 +1,5 @@
-#Especificacion de JSON
-```
+# Especificacion de JSON
+```[JavaScript]
 [
     {
         topicname :   VARCHAR[255]
