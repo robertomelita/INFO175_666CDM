@@ -1,6 +1,6 @@
 # Servicios
 
-**getAvgTimeQP:**
+# getAvgTimeQP:**
 
 **Descripcion**
 
@@ -35,7 +35,7 @@ create view timepq3 as select appid,activityname,topicname,avg(durationseconds) 
 select appid,activityname,topicname,time from timepq3  order by topicname;
 ```
 
-**getAttempQP:**
+# getAttempQP:
 
 **Descripcion**
 
