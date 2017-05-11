@@ -2,9 +2,9 @@
 
 **getAvgTimeQP:**
 
-*Descripcion*
+**Descripcion**
 
-Este servicio nos otorga el promedio de tiempo por actividad para las Quizpet y Parson
+### Este servicio nos otorga el promedio de tiempo por actividad para las Quizpet y Parson
 
 **Salida**
 
@@ -33,6 +33,41 @@ create view timepq3 as select appid,activityname,topicname,avg(durationseconds) 
 
 ```SQL
 select appid,activityname,topicname,time from timepq3  order by topicname;
+```
 
+**getAttempQP:**
+
+**Descripcion**
+
+### Este servicio nos otorga el numero de intentos por actividad 
+
+**Salida**
+
+```javascript
+[
+    TOPICO,
+    ...
+]
+
+//TOPICNAME OBJECT
+
+{
+    "appid": 41, //38 para QUIZPET, 41 para PARSON
+    "activityname": q_py_obj_car2, //nombre actividad
+    "maxat": 4, //numero de intentos
+}
+```
+# Consulta SQL
+
+### Para esta consulta, se crea un archivo de vista que entrega al maximo de intentos y los agrupa por nombre de actividad
+
+```SQL
+create view view_attemp as select appid,applabel,topicname,activityname,MAX(attemptno) as maxat from activity_traces where (appid=38 or appid=41) group by activityname order by topicname;
+```
+
+### finalmente hacemos la consulta a este archivo de vista
+```SQL
+select activityname,topicname,maxat from view_attemp  order by topicname;
+```
 
 
