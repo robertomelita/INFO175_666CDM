@@ -28,7 +28,12 @@
 * Usar otra escala de color para examples y examples animation.
 * Comparar por relación de repuestas correctas o fallidas.
 * Por lo tanto cambiaremos el esquema para adecuarnos.
+
 **Feedback (cuarta presentación):**
 * incorporar mockup de despliegue por topico.
 * incorporar popularidad como parametro principal.
 * parametro tiempo será visualizado con un mouse over
+
+**4 de mayo del 2017**
+* Hablamos directamente con el profesor en su oficina para evaluarnos y aconsejarnos sobre que aspectos del proyecto podemos mejorar para la visualización, generando así una tabla con cada factor de decisión, con una jerarquia de priorización que nos sirve para ser mas organizados y estructurados al hacer un cambio.
+* Repartiendo así equitativamente entre los integrantes de nuestro grupo las tareas y responsabilidad.
