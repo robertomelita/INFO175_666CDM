@@ -1,6 +1,6 @@
 # Servicios
 
-# getAvgTimeQP:**
+# getAvgTimeQP:
 
 **Descripcion**
 
@@ -23,7 +23,7 @@
 }
 ```
 
-# Consulta SQL
+## Consulta SQL
 ### Para esta consulta, se crea un archivo de vista que se agrupa por nombre de actividad
 
 ```SQL
@@ -57,7 +57,7 @@ select appid,activityname,topicname,time from timepq3  order by topicname;
     "maxat": 4, //numero de intentos
 }
 ```
-# Consulta SQL
+## Consulta SQL
 
 ### Para esta consulta, se crea un archivo de vista que entrega al maximo de intentos y los agrupa por nombre de actividad
 
