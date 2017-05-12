@@ -37,3 +37,6 @@
 **4 de mayo del 2017**
 * Hablamos directamente con el profesor en su oficina para evaluarnos y aconsejarnos sobre que aspectos del proyecto podemos mejorar para la visualización, generando así una tabla con cada factor de decisión, con una jerarquia de priorización que nos sirve para ser mas organizados y estructurados al hacer un cambio.
 * Repartiendo así equitativamente entre los integrantes de nuestro grupo las tareas y responsabilidad.
+
+**11 de mayo del 2017**
+* El profesor estaba enfermo, por lo cual nos entregó una hoja guia con la Actividad Clase 9, la cual desarrollamos con mucho entusiasmo, ya que gran parte de esta actividad ya la habiamos avanzado antes, por lo cual nuestra experiencia con MySQL era ventajosa a la hora de de hacer las consultas, por lo tanto, en la clase nos concentramos en crear la version preliminar del servicio siguiendo nuestra especificacion de JSON.
