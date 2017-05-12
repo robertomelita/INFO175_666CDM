@@ -71,3 +71,41 @@ select activityname,topicname,maxat from view_attemp  order by topicname;
 ```
 
 
+# getSuccessRateQP:
+
+### Descripcion
+
+### Este servicio nos otorga el success rate de cada actividad para las Quizpet y Parson
+
+### Salida
+
+
+```javascript
+[
+    TOPICO,
+    ...
+]
+
+//TOPICNAME OBJECT
+
+{
+    "appid": 41, //38 QUIZPET, 41 PARSON
+    "activityname": q_py_obj_car2, //nombre actividad
+    "success_rate": 0.5471661979590701, //success rate de la actividad
+}
+```
+
+
+## Consulta SQL
+### Para esta consulta, se crea un archivo de vista que contiene el succes rate por nombre de actividad
+
+```SQL
+create view success3 as select appid,activityname,topicname,sum(result) as resum,MAX(attemptno)as maxat from activity_traces where(appid=41 or appid=38) group by user,activityname;
+```
+
+### Finalmente se hace la consulta sobre esta vista
+
+```SQL
+select appid,topicname,activityname,(avgresum/(avgmax+1)) as success_rate from success_rate order by topicname;
+```
+
