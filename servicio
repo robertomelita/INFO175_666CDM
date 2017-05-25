@@ -1,0 +1,16 @@
+/**
+*@author: Javier Felipe Melita Vera
+*version: 24/05/2017 23:00hrs
+*primero creamos una vista en donde se suma los resultados(1 si acierta, 0 si falla) , el numero de max de attemptno(por caa intento suma 1, por lo tanto el mayor me indica cuantas veces se intentó) y el tiempo promedio(cada intento marca un tiempo, por lo cual el promedio me acerca a cuanto demora por actividad) todo agrupado por usuario y activity name
+*/
+create view viewqp as select appid,activityname,topicname,sum(result) as resum,MAX(attemptno)as maxat,avg(durationseconds)as time from activity_traces where(appid=41 or appid=38) group by user,activityname;
+/**
+*luego se crea otra vista donde se promedia la suma de los resultados, los max intentos y el tiempo, agrupando solo por nombre de actividad
+*/
+create view viewqp2 as select appid,activityname,topicname,avg(resum) as avgresum,avg(maxat) as avgmax,avg(time)as avgtime from viewqp group by activityname;
+
+/**
+*Finalmente, se hace una consulta sobre la ultima vista creada, en la cual el promedio de la suma se divide por la cantidad de intentos +1(los intentos parten de 0, en terminos practicos nos sirve que parta de 1), a esto le llamamos successrate, tambien entrega el tiempo promedio por actividad(para terminos de entendimiento, se calcula un promedio por alumno y luego un promedio por actividad, es un promedio de un promedio) y finalmente entrega la cantidad de intentos.
+*/
+
+select appid,topicname,activityname,(avgresum/(avgmax+1))as success_rate,avgtime,avgmax+1 as intentos from viewqp2 order by topicname; 
