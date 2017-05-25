@@ -40,3 +40,17 @@
 
 **11 de mayo del 2017**
 * El profesor estaba enfermo, por lo cual nos entregó una hoja guia con la Actividad Clase 9, la cual desarrollamos con mucho entusiasmo, ya que gran parte de esta actividad ya la habiamos avanzado antes, por lo cual nuestra experiencia con MySQL era ventajosa a la hora de de hacer las consultas, por lo tanto, en la clase nos concentramos en crear la version preliminar del servicio siguiendo nuestra especificacion de JSON.
+
+**18 de mayo del 2017**
+* Solo estuvo presente Leah Bracken, debido a que los demas integrantes del grupo estuvieron disfrutando de la famosa semana mechona, por lo cual, Leah nos puso al dia con la actividad(Disculpanos Leah :c).
+* Nuestro Team visualización esta conformado por:
+* Roberto Melita
+* Felipe Quezada
+* Leah Bracken
+
+* Team Servicio de datos:
+* Javier Rojas
+* Diego Vera
+
+* Documentador:
+* Diego Vera
