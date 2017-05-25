@@ -18,7 +18,7 @@
 
 {
     "appid": 41, //38 QUIZPET, 41 PARSON
-    "activityname": q_py_obj_car2, //nombre actividad
+    "topicname": classes_objects, //nombre tópico
     "avgtime": 29.8895, //tiempo promedio en segundos
     "success_rate": 0.40539992702801314,//tasa de éxito
     "intentos": 2.4667,//intento promedio 
