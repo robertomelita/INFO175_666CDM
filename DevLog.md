@@ -43,14 +43,19 @@
 
 **18 de mayo del 2017**
 * Solo estuvo presente Leah Bracken, debido a que los demas integrantes del grupo estuvieron disfrutando de la famosa semana mechona, por lo cual, Leah nos puso al dia con la actividad(Disculpanos Leah :c).
-* Nuestro Team visualización esta conformado por:
+** Nuestro Team visualización esta conformado por:**
 * Roberto Melita
 * Felipe Quezada
 * Leah Bracken
 
-* Team Servicio de datos:
+** Team Servicio de datos:**
 * Javier Rojas
 * Diego Vera
 
-* Documentador:
+** Documentador:**
 * Diego Vera
+
+* Respecto al codigo de la visualizacion; Utilizamos variables estaticas definidas para mostrar en pantalla, las cuales solo son momentaneas hasta que se tenga correctamente la base de datos.
+* Mientras que la funcionalidad; Avanzamos en el contenedor de los elementos de la visualizacion, el dezpliegue de headers, dezpliegue de tópicos y de circulos(aun sin la escalas de colores correctas que habiamos propuesto).
+
+![GitHub Logo](/Downloads/WhatsApp Image 2017-05-24 at 21.58.43.jpeg)
