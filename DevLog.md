@@ -58,4 +58,4 @@
 * Respecto al codigo de la visualizacion; Utilizamos variables estaticas definidas para mostrar en pantalla, las cuales solo son momentaneas hasta que se tenga correctamente la base de datos.
 * Mientras que la funcionalidad; Avanzamos en el contenedor de los elementos de la visualizacion, el dezpliegue de headers, dezpliegue de tópicos y de circulos(aun sin la escalas de colores correctas que habiamos propuesto).
 
-![GitHub Mv](/Downloads/Mv.jpeg)
+![GitHub Mv](/Documents/Mv.png)
