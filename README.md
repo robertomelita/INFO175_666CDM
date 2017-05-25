@@ -40,3 +40,29 @@
 
 **11 de mayo del 2017**
 * El profesor estaba enfermo, por lo cual nos entregó una hoja guia con la Actividad Clase 9, la cual desarrollamos con mucho entusiasmo, ya que gran parte de esta actividad ya la habiamos avanzado antes, por lo cual nuestra experiencia con MySQL era ventajosa a la hora de de hacer las consultas, por lo tanto, en la clase nos concentramos en crear la version preliminar del servicio siguiendo nuestra especificacion de JSON.
+
+**18 de mayo del 2017**
+* Solo estuvo presente Leah Bracken, debido a que los demas integrantes del grupo estuvieron disfrutando de la famosa semana mechona, por lo cual, Leah nos puso al dia con la actividad(Disculpanos Leah :c).
+**Nuestro Team visualización esta conformado por:**
+* Roberto Melita
+* Felipe Quezada
+* Leah Bracken
+
+**Team Servicio de datos:**
+* Javier Rojas
+* Diego Vera
+
+**Documentador:**
+* Diego Vera
+
+* Respecto al codigo de la visualizacion; Utilizamos variables estaticas definidas para mostrar en pantalla, las cuales solo son momentaneas hasta que se tenga correctamente la base de datos.
+* Mientras que la funcionalidad; Avanzamos en el contenedor de los elementos de la visualizacion, el dezpliegue de headers, dezpliegue de tópicos y de circulos(aun sin la escalas de colores correctas que habiamos propuesto).
+
+* Representación gráfica.
+![GitHub Representación grafica](imagenes/Mv.png)
+
+* Respecto al servicio de datos, avanzamos y mejoramos la consulta en MySql, creando funciones que solicitan lo que la visualizacion necesitará mas adelante.
+
+* Vista Gráfica de la consulta en MySql.
+![GitHub Consulta MySql](imagenes/Consulta.png)
+
