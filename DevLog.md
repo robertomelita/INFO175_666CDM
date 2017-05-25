@@ -64,4 +64,4 @@
 * Respecto al servicio de datos, avanzamos y mejoramos la consulta en MySql, creando funciones que solicitan lo que la visualizacion necesitará mas adelante.
 
 * Vista Gráfica de la consulta en MySql.
-![GitHub Consulta MySql](imagenes/18698799_10213558691745160_1016321264_o.png)
+![GitHub Consulta MySql](imagenes/Consulta.png)
