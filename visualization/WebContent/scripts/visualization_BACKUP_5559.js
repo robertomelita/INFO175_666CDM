@@ -16,9 +16,12 @@ var padding = {top : 30, left : 50, bottom : 30, right : 50};
 //Escala lineal que transformara entradas entre 2 y 6 (tiempo proveniente de la base de datos) a numeros entre 4 y 30 (tamaño de los circulos)
 var timeScale = d3.scaleLinear().domain([2,6]).range([4,30]);
 
+<<<<<<< HEAD
+=======
 //Tamaños de Cuadrados en la leyenda
 var tCuadrados = 25;
 
+>>>>>>> develop
 //Variables globales para modificacion rapida de apartados de la visualización.
 //(se ocupa en svg y en topicos respectivamente).
 var width = 1000;
