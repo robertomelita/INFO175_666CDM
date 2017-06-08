@@ -16,6 +16,9 @@ var padding = {top : 30, left : 50, bottom : 30, right : 50};
 //Escala lineal que transformara entradas entre 2 y 6 (tiempo proveniente de la base de datos) a numeros entre 4 y 30 (tamaño de los circulos)
 var timeScale = d3.scaleLinear().domain([2,6]).range([4,30]);
 
+//Tamaños de Cuadrados en la leyenda
+var tCuadrados = 25;
+
 //Variables globales para modificacion rapida de apartados de la visualización.
 //(se ocupa en svg y en topicos respectivamente).
 var width = 1000;
@@ -93,8 +96,15 @@ function main(){
     .style("visibility", "hidden")
     .style("color", "black")
     .text("");
+	var tooltip2 = d3.select("body")
+    .append("div")
+    .style("position", "absolute")
+    .style("z-index", "10")
+    .style("visibility", "hidden")
+    .style("color", "black")
+    .text("");
 	
-	//Despliegue de os círculos.
+	//Despliegue de los círculos.
 	var circles = svg.selectAll(".topicCircles").data(tiempo).enter().append("circle").attr("class","topicCircles");
 	circles.attr("cx", function(d,i){return ((i%4+1)*120 + 12*(i%4) +padding.left*1.5);})
 		.attr("cy", function(d,i){return ( 40 )*Math.floor(i/4)+padding.top*2.6 + Math.floor(i/4)*minItemHeight;})
@@ -137,6 +147,20 @@ function main(){
 				invalidate();
 			}
 		});
+	
+	//Despliegue de la leyenda
+	var Cuadrados = svg.selectAll(".coloresLeyenda").data(colors).enter().append("rect")
+					.attr("class","coloresLeyenda")
+					.attr("x", 750)
+					.attr("y", function(d,i){return (70)+i*tCuadrados;})
+					.attr("width", function(d,i){return tCuadrados})
+					.attr("height", function(d,i){return tCuadrados})
+					.attr("style",function(colors,i){ return "fill:"+(colors)+(";stroke-width:1;stroke:rgb(0,0,0)");});
+	var Leyenda = svg.selectAll(".textoLeyenda").data(colors).enter().append("text")
+					.text(function(d,i){return i*10+"% - "+(i*10+10)+"%";})
+					.attr("x", 778)
+					.attr("y", function(d,i){return (90)+i*tCuadrados;});
+					
 }
 
 //Funcion dedicada a redibujar la visualizacion dado los topicos expandidos.
