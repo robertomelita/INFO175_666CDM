@@ -65,3 +65,9 @@
 
 * Vista Gráfica de la consulta en MySql.
 ![GitHub Consulta MySql](imagenes/Consulta.png)
+
+**25 de Mayo**
+* Nos reunimos con el profesor para hablar sobre el avance que llevamos en el proyecto y que aspectos debiamos mejorar en nuestra plataforma github, recordarnos que debemos priorizar según nuestro Plan666 y hablar sobre la visualización en general para despues presentarla en la semana siguiente.
+
+**1 de Junio**
+* Se suspendieron las clases, por lo que enviamos nuestra presentación al correo del profesor.
