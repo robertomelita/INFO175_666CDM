@@ -1,6 +1,7 @@
 /build/
 /WebContent/WEB-INF/
 /WebContent/META-INF/
-/.settings/
+/.settings/*
 /visualization/.project
 .project
+.classpath
