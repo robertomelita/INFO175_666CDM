@@ -96,13 +96,7 @@ function main(){
     .style("visibility", "hidden")
     .style("color", "black")
     .text("");
-	var tooltip2 = d3.select("body")
-    .append("div")
-    .style("position", "absolute")
-    .style("z-index", "10")
-    .style("visibility", "hidden")
-    .style("color", "black")
-    .text("");
+
 	
 	//Despliegue de los círculos.
 	var circles = svg.selectAll(".topicCircles").data(tiempo).enter().append("circle").attr("class","topicCircles");
