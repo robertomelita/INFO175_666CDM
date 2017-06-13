@@ -71,3 +71,6 @@
 
 **1 de Junio**
 * Se suspendieron las clases, por lo que enviamos nuestra presentación al correo del profesor.
+
+**8 de Junio**
+* Presentamos nuestra visualizacion y explicamos el codigo, obteniendo criticas positivas, faltando leyenda del radio y los colores para animated examples.
