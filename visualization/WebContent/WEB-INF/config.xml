@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
-	<dbString>jdbc:mysql://localhost:8889/info175_data</dbString>
+	<dbString>jdbc:mysql://localhost:8080/prueba</dbString>
 	<dbUser>root</dbUser>
-	<dbPass>root</dbPass>
+	<dbPass>majoramask</dbPass>
 </configuration>

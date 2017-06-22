@@ -1,4 +1,6 @@
+var data;
 //Variables estáticas, predefinidas para mostrar la visualizacion.
+
 //(Deben ser cambiadas por los datos a obtener de la base de datos).
 var topicNames = ["Topic 1", "Topic 2", "Topic 3", "Topic 4", "Topic 5", "Topic 6", "Topic 7", "Topic 8"];
 var headerNames = ["Tópico", "Quizpet", "Parsons", "Animated Ex", "Annotated Ex"];
@@ -201,6 +203,7 @@ function main(){
 	.text("Tiempo Máximo")
 	.attr("x", 820)
 	.attr("y", padding.top+502);
+	loadData();
 					
 }
 
@@ -274,4 +277,14 @@ function invalidate() {
 			+ " " + (width*105/160) + ","+ ((i+2)*(padding.top+minItemHeight)-16+10*i+ extra) 
 			+ " " + (width*105/160) + ","+ ((i+2)*(padding.top+minItemHeight)-20+10*i+ extra)
 		});
+}
+
+function loadData(){
+	alert("antes");
+	$.getJSON("http://localhost:8080/Visualization_req3/GetSampleData",function(data){jeje(data);});
+	alert("skdks");
+}
+function jeje(hele){
+	data=hele;
+	alert(data);
 }

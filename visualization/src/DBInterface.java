@@ -4,7 +4,6 @@ import java.util.*;
 /**
  * Esta clase implementa metodos de conexión y consula a una base de datos.
  * 
- * @author Julio Guerra
  *
  */
 public class DBInterface {
