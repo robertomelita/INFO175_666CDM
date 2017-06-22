@@ -74,3 +74,4 @@
 
 **8 de Junio**
 * Presentamos nuestra visualizacion y explicamos el codigo, obteniendo criticas positivas, faltando leyenda del radio y los colores para animated examples.
+* Tambien nos falto avanzar el codigo en el servlet para las consultas.
