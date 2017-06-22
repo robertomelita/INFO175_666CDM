@@ -87,7 +87,7 @@ public class GetSampleData extends HttpServlet {
 	private String outAsJSON(ArrayList<String[]> data){
 		String outString = "[";
 		for(String[] row : data){
-			outString += "\n    {\"appid\":\""+row[0]+"\",\"topicname\":\""+row[1]+"\",\"activityname\":"+row[2]+"\",\"success_rate\":"+row[3]+"\",\tiempo_prom\":"+row[4]+"\",\"intentos\":"+row[5]+"},";
+			outString += "\n    {\"appid\":\""+row[0]+"\",\"topicname\":\""+row[1]+"\",\"activityname\":\""+row[2]+"\",\"success_rate\":\""+row[3]+"\",\"tiempo_prom\":\""+row[4]+"\",\"intentos\":\""+row[5]+"\"},";
 		}
 		outString = outString.substring(0,outString.length()-1);
 		outString += "\n]";

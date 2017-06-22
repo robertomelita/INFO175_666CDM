@@ -1,4 +1,4 @@
-var data;
+var data=null;
 //Variables estáticas, predefinidas para mostrar la visualizacion.
 
 //(Deben ser cambiadas por los datos a obtener de la base de datos).
@@ -30,8 +30,10 @@ var minItemHeight = 35;
 //Variable svg principal
 var svg;
 
-function main(){
-	
+function main(res){
+	console.log("main");
+	console.log(res);
+	data=res;
 	//se llena el arreglo expanded con 0. Todos los topicos comienzan colapsados
 	for(i = 0; i<topicNames.length; i++){
 		expanded.push(0);
@@ -203,7 +205,6 @@ function main(){
 	.text("Tiempo Máximo")
 	.attr("x", 820)
 	.attr("y", padding.top+502);
-	loadData();
 					
 }
 
@@ -280,11 +281,10 @@ function invalidate() {
 }
 
 function loadData(){
-	alert("antes");
-	$.getJSON("http://localhost:8080/Visualization_req3/GetSampleData",function(data){jeje(data);});
-	alert("skdks");
+	
+	d=$.getJSON("http://localhost:8080/Visualization_req3/GetSampleData",function(data){main(data);});
 }
-function jeje(hele){
-	data=hele;
-	alert(data);
-}
+$(window).ready(function(){loadData();});
+
+
+
