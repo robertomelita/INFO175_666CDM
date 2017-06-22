@@ -95,6 +95,7 @@ function main(){
     .style("z-index", "10")
     .style("visibility", "hidden")
     .style("color", "black")
+    .style("background","rgba(255,255,255, .8)")
     .text("");
 
 	
@@ -146,14 +147,60 @@ function main(){
 	var Cuadrados = svg.selectAll(".coloresLeyenda").data(colors).enter().append("rect")
 					.attr("class","coloresLeyenda")
 					.attr("x", 750)
-					.attr("y", function(d,i){return (70)+i*tCuadrados;})
+					.attr("y", function(d,i){return (120)+i*tCuadrados;})
 					.attr("width", function(d,i){return tCuadrados})
 					.attr("height", function(d,i){return tCuadrados})
-					.attr("style",function(colors,i){ return "fill:"+(colors)+(";stroke-width:1;stroke:rgb(0,0,0)");});
+					.attr("style",function(d,i){ return "fill:"+(colors[9-i])+(";stroke-width:1;stroke:rgb(0,0,0)");});
 	var Leyenda = svg.selectAll(".textoLeyenda").data(colors).enter().append("text")
 					.text(function(d,i){return i*10+"% - "+(i*10+10)+"%";})
 					.attr("x", 778)
-					.attr("y", function(d,i){return (90)+i*tCuadrados;});
+					.attr("y", function(d,i){return (140)+i*tCuadrados;});
+	
+	var lName = ["Quizpet and Parson = Success Rate ", " Examples = Level of Completion"];
+	
+    svg.selectAll(".leyendaNombre")
+     						.data(lName)
+     						.enter()
+     						.append("text")
+     						.text(function(d){return d;})
+     						.attr("x", 740)
+     						.attr("y", function(d,i){return 60+(i*15)+ padding.top})
+     						.attr("font-size", "15")
+     						.attr("font-family", "seriff");
+    
+    svg.append("text")
+    						.text("Leyenda")
+    						.attr("x", 740)
+    						.attr("y", padding.top)
+    						.attr("font-size", "24")
+    						.attr("text-decoration", "underline");
+    
+    svg.append("circle")
+    						.attr("cx", 760)
+    						.attr("cy", padding.top+430)
+    						.attr("r", timeScale(2))
+    						.attr("fill", "#009688");
+    svg.append("circle")
+	.attr("cx", 760)
+	.attr("cy", padding.top+500)
+	.attr("r", timeScale(6))
+	.attr("fill", "#009688");
+    
+	svg.append("text")
+	.text("Tamaño:")
+	.attr("x", 740)
+	.attr("y", padding.top+400)
+	.attr("text-decoration", "underline");
+	
+	svg.append("text")
+	.text("Tiempo Mínimo")
+	.attr("x", 820)
+	.attr("y", padding.top+435);
+	
+	svg.append("text")
+	.text("Tiempo Máximo")
+	.attr("x", 820)
+	.attr("y", padding.top+502);
 					
 }
 

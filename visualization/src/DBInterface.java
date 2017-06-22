@@ -77,18 +77,20 @@ public class DBInterface {
 		try {
 			ArrayList<String[]> res = new ArrayList<String[]>();
 			stmt = conn.createStatement();
-			String query = "SELECT `user`, `applabel`, count(*) as `activity_count` "
-					+ "FROM `activity_traces` WHERE `durationseconds` > 0 "
-					+ "GROUP BY `user`, `applabel` ORDER BY `user`;";
+			
+			String query = "select `appid`,`topicname`,`activityname`,(avgresum/(avgmax+1))as `success_rate`, avgtime as `tiempo_prom`,avgmax+1 as `intentos` from viewqp2 order by topicname;";
 			rs = stmt.executeQuery(query);
 			
 			// rs contiene una estructura de tipo SET que contiene todas
 			// las filas de la respuesta de la base de datos
 			while (rs.next()) {
-				String[] dataPoint = new String[3];
-				dataPoint[0] = rs.getString("user"); // rs.getString obtiene el valor String de un campo especifico consultado, en este caso el campo "user". Notar que este nombre de campodebe coincidir con los campos en la consulta (SELECT `user`, ...) 
-				dataPoint[1] = rs.getString("applabel");
-				dataPoint[2] = rs.getString("activity_count");
+				String[] dataPoint = new String[6];
+				dataPoint[0] = rs.getString("appid"); // rs.getString obtiene el valor String de un campo especifico consultado, en este caso el campo "user". Notar que este nombre de campodebe coincidir con los campos en la consulta (SELECT `user`, ...) 
+				dataPoint[1] = rs.getString("topicname");
+				dataPoint[2] = rs.getString("activityname");
+				dataPoint[3] = rs.getString("success_rate");
+				dataPoint[4] = rs.getString("tiempo_prom");
+				dataPoint[5] = rs.getString("intentos");
 				res.add(dataPoint);
 				
 			}
