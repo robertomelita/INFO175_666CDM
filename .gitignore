@@ -4,4 +4,4 @@
 /.settings/*
 /visualization/.project
 .project
-.classpath
+.class*
