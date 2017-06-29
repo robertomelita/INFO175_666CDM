@@ -1,6 +1,6 @@
 # Servicios
 
-# GetPQ666:
+# GetQP666:
 
 ### Descripcion
 
