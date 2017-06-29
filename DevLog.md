@@ -75,3 +75,12 @@
 **8 de Junio**
 * Presentamos nuestra visualizacion y explicamos el codigo, obteniendo criticas positivas, faltando leyenda del radio y los colores para animated examples.
 * Tambien nos falto avanzar el codigo en el servlet para las consultas.
+
+ **22 de junio**
+ * Nos juntamos con el profesor para conversar sobre la finalizacion de nuestro proyecto, dejandonos en claro cuales eran los objetivos que debiamos terminar para la ultima presentación, las cuales eran.
+ -Hacer escala del tiempo en la leyenda
+ -Terminar las consultas
+ -Renombrar los servicios
+ -Mostrar los nombres de cada topico
+ -Visualizacion principal sin scroll
+ 

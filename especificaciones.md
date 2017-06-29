@@ -1,6 +1,6 @@
 # Servicios
 
-# getQP:
+# GetQP666:
 
 ### Descripcion
 
@@ -41,5 +41,41 @@ create view viewqp2 as select appid,activityname,topicname,avg(resum) as avgresu
 ```SQL
 select appid,topicname,activityname,(avgresum/(avgmax+1))as success_rate,avgtime,avgmax+1 as intentos from viewqp2 order by topicname; 
 ```
+# GetAE666:
 
+### Descripcion
+
+### Este servicio nos otorga el promedio de tiempo por actividad y nivel de completacion para Animated Example y Master Grid
+
+### Salida
+
+```javascript
+[
+    nombreactividad,
+    ...
+]
+
+//NOMBREACTIVIDAD OBJECT
+
+{
+    "appid": 3, 
+    "topicname": classes_objects, //nombre tópico
+    "tiempo_promedio": 29.8895, //tiempo promedio en segundos
+    "nivel_completacion": 0.40539992702801314,//nivel de completacion 
+}
+```
+
+## Consulta SQL
+### Para esta consulta, se crea un primer archivo de vista 
+
+```SQL
+create view animated_def as select user,appid,topicname,parentname,sum(durationseconds) as sumtime,max(CAST(activityname AS UNSIGNED))+1 as maxline,count(distinct(activityname))as cant from activity_traces where(appid=3 or appid=35)group by parentname,user;
+
+```
+
+### finalmente se hace la consulta a este archivo de vista
+
+```SQL
+select appid,parentname,topicname,avg(sumtime) as tiempo_promedio,(avg(cant)/max(maxline)) as nivel_de_completation from animated_def group by parentname order by topicname;
+```
 
