@@ -87,7 +87,7 @@ public class GetAE666 extends HttpServlet {
 	private String outAsJSON(ArrayList<String[]> data){
 		String outString = "[";
 		for(String[] row : data){
-			outString += "\n    {\"appid\":\""+row[0]+"\",\"topicname\":\""+row[1]+"\",\"activityname\":\""+row[2]+"\",\"tiempo_promedio\":\""+row[3]+"\",\"nivel_completacion\":\""+row[4]+"\"},";
+			outString += "\n    {\"appid\":\""+row[0]+"\",\"topicname\":\""+row[1]+"\",\"activityname\":\""+row[2]+"\",\"tiempo_prom\":\""+row[3]+"\",\"success_rate\":\""+row[4]+"\",\"intentos\":\"null\"},";
 		}
 		outString = outString.substring(0,outString.length()-1);
 		outString += "\n]";

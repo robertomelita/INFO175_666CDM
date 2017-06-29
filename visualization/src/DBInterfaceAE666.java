@@ -77,7 +77,7 @@ public class DBInterfaceAE666 {
 			ArrayList<String[]> res = new ArrayList<String[]>();
 			stmt = conn.createStatement();
 			
-			String query = "select `appid`,`topicname`,`parentname`,avg(sumtime) as `tiempo_promedio`,(avg(cant)/max(maxline)) as `nivel_completacion` from animated_def group by parentname order by topicname;";
+			String query = "select `appid`,`topicname`,parentname as`activityname`,avg(sumtime) as `tiempo_prom`,(avg(cant)/max(maxline)) as `success_rate` from animated_def group by parentname order by topicname;";
 			rs = stmt.executeQuery(query);
 			
 			// rs contiene una estructura de tipo SET que contiene todas
@@ -87,10 +87,9 @@ public class DBInterfaceAE666 {
 				dataPoint[0] = rs.getString("appid"); // rs.getString obtiene el valor String de un campo especifico consultado, en este caso el campo "user". Notar que este nombre de campodebe coincidir con los campos en la consulta (SELECT `user`, ...) 
 				dataPoint[1] = rs.getString("topicname");
 				dataPoint[2] = rs.getString("activityname");
-				dataPoint[3] = rs.getString("tiempo_promedio");
-				dataPoint[4] = rs.getString("nivel_completacion");
+				dataPoint[3] = rs.getString("tiempo_prom");
+				dataPoint[4] = rs.getString("success_rate");
 				res.add(dataPoint);
-				
 			}
 			this.releaseStatement(stmt, rs);
 			return res;

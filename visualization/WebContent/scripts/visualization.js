@@ -1,12 +1,9 @@
 var data=null;
 //Variables estáticas, predefinidas para mostrar la visualizacion.
 
-//(Deben ser cambiadas por los datos a obtener de la base de datos).
-var topicNames = ["Topic 1", "Topic 2", "Topic 3", "Topic 4", "Topic 5", "Topic 6", "Topic 7", "Topic 8"];
+//Colores y titulos a ocupar en la visualizacion.
 var headerNames = ["Tópico", "Quizpet", "Parsons", "Animated Ex", "Annotated Ex"];
-var tiempo    = [2,3,4,5,6,4,2,2,3,4,6,6,2,3,2,4,5,6,6,2,2,2,6,3,5,4,3,5,3,2,2,6];
 var colors = ["#2196f3", "#388cde", "#4f83c9", "#677ab4", "#7e719f", "#96678a", "#ad5e75", "#c55560", "#dc4c4b", "#f44336"];
-var dificultad= [0,1,6,3,8,2,9,9,0,4,1,2,3,6,7,3,2,9,7,0,1,2,5,6,4,7,8,8,1,0,5,3];
 
 //arreglo conteniendo informacion acerca de cual topico esta expandido y cual no - 1: expandido, 0: cerrado
 var expanded = new Array();
@@ -16,7 +13,7 @@ var margins = {top : 100, left : 50, bottom : 0, right : 50};
 var padding = {top : 30, left : 50, bottom : 30, right : 50};
 
 //Escala lineal que transformara entradas entre 2 y 6 (tiempo proveniente de la base de datos) a numeros entre 4 y 30 (tamaño de los circulos)
-var timeScale = d3.scaleLinear().domain([2,6]).range([4,30]);
+var timeScale = d3.scaleLinear().domain([0,155]).range([4,30]);
 
 //Tamaños de Cuadrados en la leyenda
 var tCuadrados = 25;
@@ -24,16 +21,16 @@ var tCuadrados = 25;
 //Variables globales para modificacion rapida de apartados de la visualización.
 //(se ocupa en svg y en topicos respectivamente).
 var width = 1000;
-var height= 800;
+var height= 1800;
 var minItemHeight = 35;
+var expandedHeight = 600;
 
 //Variable svg principal
 var svg;
 
 function main(res){
-	console.log("main");
-	console.log(res);
-	data=res;
+	data=data.concat(res);
+	inicializacionTopics(data);
 	//se llena el arreglo expanded con 0. Todos los topicos comienzan colapsados
 	for(i = 0; i<topicNames.length; i++){
 		expanded.push(0);
@@ -62,7 +59,7 @@ function main(res){
 		.attr("y", function(d,i){
 			var extra = 0;
 			for (j=0;j<topicNames.length; j++){
-				extra+= expanded[j]*300;
+				extra+= expanded[j]*expandedHeight;
 			}
 			return ( (i+2)*(padding.top+minItemHeight-25))+(minItemHeight)*i;
 			})
@@ -109,7 +106,7 @@ function main(res){
 		.attr("cy", function(d,i){return ( 40 )*Math.floor(i/4)+padding.top*2.6 + Math.floor(i/4)*minItemHeight;})
 		.attr("r", function(d,i){return timeScale(d)})
 		.attr("fill", function(d,i){return colors[dificultad[i] ];})
-		.on("mouseover", function(d,i){return tooltip.style("visibility", "visible").text("Tiempo = "+d+" Dificultad = "+ dificultad[i]);})
+		.on("mouseover", function(d,i){return tooltip.style("visibility", "visible").text("Tiempo = "+d+" segs. Success rate = "+ dificultad[i]*10+"%");})
 		.on("mousemove", function(){return tooltip.style("top",
 		    (d3.event.pageY-10)+"px").style("left",(d3.event.pageX+10)+"px");})
 		.on("mouseout", function(){return tooltip.style("visibility", "hidden");});
@@ -205,6 +202,8 @@ function main(res){
 	.text("Tiempo Máximo")
 	.attr("x", 820)
 	.attr("y", padding.top+502);
+	
+	
 					
 }
 
@@ -215,7 +214,7 @@ function invalidate() {
 	svg.transition().attr("height", function(){
 		var extra = 0;
 		for (i = 0; i < expanded.length; i++){
-			extra += expanded[i]*300;
+			extra += expanded[i]*expandedHeight;
 		}
 		return height+extra;
 	});
@@ -225,7 +224,7 @@ function invalidate() {
 	.attr("y", function(d,i){
 		var extra = 0;
 		for (j=i-1;j>=0; j--){
-			extra+= expanded[j]*300;
+			extra+= expanded[j]*expandedHeight;
 		}
 		//console.log(extra);
 		return ( (i+2)*(padding.top+minItemHeight-25))+(minItemHeight)*i + extra;
@@ -236,7 +235,7 @@ function invalidate() {
 		.attr("cy", function(d,i){
 			var extra = 0;
 			for (j=Math.floor(i/4) - 1;j>=0; j--){
-				extra+= expanded[j]*300;
+				extra+= expanded[j]*expandedHeight;
 			}
 			//console.log(extra);
 			return ( 40 )*Math.floor(i/4)+padding.top*2.6 + Math.floor(i/4)*minItemHeight + extra;
@@ -247,7 +246,7 @@ function invalidate() {
 		.attr("y", function(d,i){
 			var extra = 0;
 			for (j=i-1;j>=0; j--){
-				extra+= expanded[j]*300;
+				extra+= expanded[j]*expandedHeight;
 			}
 			//console.log(extra);
 			return ( (i+2)*(padding.top+minItemHeight-25))+(minItemHeight)*i - 19 + extra;
@@ -258,7 +257,7 @@ function invalidate() {
 		.attr("points", function(d,i){
 			var extra = 0;
 			for (j=i;j>=0; j--){
-				extra+= expanded[j]*300;
+				extra+= expanded[j]*expandedHeight;
 			}
 			console.log("extra = "+extra);
 			return (padding.left-5) + "," + ((i+2)*(padding.top+minItemHeight)-20+10*i + extra)
@@ -278,11 +277,59 @@ function invalidate() {
 			+ " " + (width*105/160) + ","+ ((i+2)*(padding.top+minItemHeight)-16+10*i+ extra) 
 			+ " " + (width*105/160) + ","+ ((i+2)*(padding.top+minItemHeight)-20+10*i+ extra)
 		});
+	var extra = 0;
+	var activityCircleSpacing = 75;
+	for(var l = 0; l<expanded.length; l++){
+		extra += expanded[l]*expandedHeight; 
+		
+		if (expanded[l] == 1){
+			var extraX = 0;
+			var extraY = 0;
+			var lastID = "41";
+			var top = new Array(dataXTopic[l].length);
+			var cir = svg.selectAll(".c"+l).data(top).enter().append("circle")
+						.attr("class", "c"+l)
+						.attr("cx", function(d,i){
+							console.log(i)
+						
+							if (lastID != dataXTopic[l][i].appid){
+								console.log("cambio id"	)
+								lastID = dataXTopic[l][i].appid;
+								extraX +=132	;
+								
+							}
+							//console.log(120+padding.left*1.5 + extraX);
+							return 120+padding.left*1.5 + extraX;	
+						});
+			lastID = "41";
+						cir.attr("cy", function(d,i){
+							console.log(i);							
+							if (lastID == dataXTopic[l][i].appid && i != 0){
+								extraY +=80;
+							}else{
+								lastID = dataXTopic[l][i].appid;
+								extraY = 0;
+							}
+							//console.log(( 40 )*Math.floor(0/4)+padding.top*2.6 + Math.floor(0/4)*minItemHeight + activityCircleSpacing + extraY );
+							return padding.top*2.6 + activityCircleSpacing + extraY+(80-.35*l)*l+ extra-600;
+						
+						})
+						.attr("r", function(d,i){return timeScale(dataXTopic[l][i].tiempo_prom);})
+						.attr("fill", function(d,i){return colors[parseInt(dataXTopic[l][i].success_rate*10)]});
+		}
+		else{
+			svg.selectAll(".c"+l).remove();
+			
+		}
+		
+	}
 }
-
+function hele(res){
+	data=res;
+}
 function loadData(){
-	
-	d=$.getJSON("http://localhost:8080/Visualization_req3/GetSampleData",function(data){main(data);});
+	$.getJSON("http://localhost:8080/Visualization_req3/GetAE666",function(data){hele(data)});
+	$.getJSON("http://localhost:8080/Visualization_req3/GetQP666",function(data){main(data)});
 }
 $(window).ready(function(){loadData();});
 

@@ -91,6 +91,7 @@ public class GetSampleData extends HttpServlet {
 		}
 		outString = outString.substring(0,outString.length()-1);
 		outString += "\n]";
+		System.out.println(outString);
 		return outString;
 	}
 }
