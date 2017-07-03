@@ -77,7 +77,7 @@ public class DBInterfaceAE666 {
 			ArrayList<String[]> res = new ArrayList<String[]>();
 			stmt = conn.createStatement();
 			
-			String query = "select `appid`,`topicname`,parentname as`activityname`,avg(sumtime) as `tiempo_prom`,(avg(cant)/max(maxline)) as `success_rate` from animated_def group by parentname order by topicname;";
+			String query = "select `appid`,`topicname`,parentname as`activityname`,avg(sumtime) as `tiempo_prom`,(avg(cant)/max(maxline)) as `success_rate` from animated_def group by parentname order by topicorder;";
 			rs = stmt.executeQuery(query);
 			
 			// rs contiene una estructura de tipo SET que contiene todas

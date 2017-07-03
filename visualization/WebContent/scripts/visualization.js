@@ -105,7 +105,7 @@ function main(res){
 	circles.attr("cx", function(d,i){return ((i%4+1)*120 + 12*(i%4) +padding.left*1.5);})
 		.attr("cy", function(d,i){return ( 40 )*Math.floor(i/4)+padding.top*2.6 + Math.floor(i/4)*minItemHeight;})
 		.attr("r", function(d,i){return timeScale(d)})
-		.attr("fill", function(d,i){return colors[dificultad[i] ];})
+		.attr("fill", function(d,i){return colors[9-dificultad[i]];})
 		.on("mouseover", function(d,i){return tooltip.style("visibility", "visible").text("Tiempo = "+d+" segs. Success rate = "+ dificultad[i]*10+"%");})
 		.on("mousemove", function(){return tooltip.style("top",
 		    (d3.event.pageY-10)+"px").style("left",(d3.event.pageX+10)+"px");})
@@ -184,7 +184,7 @@ function main(res){
     svg.append("circle")
 	.attr("cx", 760)
 	.attr("cy", padding.top+500)
-	.attr("r", timeScale(6))
+	.attr("r", timeScale(150))
 	.attr("fill", "#009688");
     
 	svg.append("text")
@@ -287,7 +287,7 @@ function invalidate() {
 			var extraY = 0;
 			var lastID = "41";
 			var top = new Array(dataXTopic[l].length);
-			var cir = svg.selectAll(".c"+l).data(top).enter().append("circle")
+			var cir = svg.selectAll(".c"+l).data(dataXTopic[l]).enter().append("circle")
 						.attr("class", "c"+l)
 						.attr("cx", function(d,i){
 							console.log(i)
@@ -311,16 +311,51 @@ function invalidate() {
 								extraY = 0;
 							}
 							//console.log(( 40 )*Math.floor(0/4)+padding.top*2.6 + Math.floor(0/4)*minItemHeight + activityCircleSpacing + extraY );
-							return padding.top*2.6 + activityCircleSpacing + extraY+(80-.35*l)*l+ extra-600;
+							return padding.top*2.6 + activityCircleSpacing + extraY+(80-.3*l)*l+ extra-600;
 						
 						})
 						.attr("r", function(d,i){return timeScale(dataXTopic[l][i].tiempo_prom);})
-						.attr("fill", function(d,i){return colors[parseInt(dataXTopic[l][i].success_rate*10)]});
+						.attr("fill", function(d,i){return colors[9-parseInt(dataXTopic[l][i].success_rate*10)]}) 
+						.on("mouseover", function(d,i){
+							console.log(d);
+							return tooltip.style("visibility", "visible").text(function(){
+								if (d.appid == 41 || d.appid == 38){
+									return "Tiempo: "+parseInt(d.tiempo_prom)+" segs. Success rate: "+ parseInt(d.success_rate*100)	+"%. Intentos: "+d.intentos;
+								}else{
+									return "Tiempo: "+parseInt(d.tiempo_prom)+" segs. Completacion: "+ parseInt(d.success_rate*100)	+"%"
+								}
+							});
+						})
+						.on("mousemove", function(){return tooltip.style("top",
+								(d3.event.pageY-10)+"px").style("left",(d3.event.pageX+10)+"px");})
+						.on("mouseout", function(){return tooltip.style("visibility", "hidden");});
+						
 		}
 		else{
 			svg.selectAll(".c"+l).remove();
 			
 		}
+		var tooltip = d3.select("body")
+	    .append("div")
+	    .style("position", "absolute")
+	    .style("z-index", "10")
+	    .style("visibility", "hidden")
+	    .style("color", "black")
+	    .style("background","rgba(255,255,255, .8)")
+	    .text("");
+		svg.selectAll(".c"+l).transition().attr("cy", function(d,i){
+			console.log(i);							
+			if (lastID == dataXTopic[l][i].appid && i != 0){
+				extraY +=80;
+			}else{
+				lastID = dataXTopic[l][i].appid;
+				extraY = 0;
+			}
+			return padding.top*2.6 + activityCircleSpacing + extraY+(80-.3*l)*l+ extra-600;
+		
+		})
+		
+		//	svg.selectAll(".h"+l).data(dataXTopic[l]).enter().append("text").attr("x",).attr("y",)
 		
 	}
 }

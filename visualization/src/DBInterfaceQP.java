@@ -77,7 +77,7 @@ public class DBInterfaceQP {
 			ArrayList<String[]> res = new ArrayList<String[]>();
 			stmt = conn.createStatement();
 			
-			String query = "select `appid`,`topicname`,`activityname`,(avgresum/(avgmax+1))as `success_rate`, avgtime as `tiempo_prom`,avgmax+1 as `intentos` from viewqp2 order by topicname;";
+			String query = "select `appid`,`topicname`,`activityname`,(avgresum/(avgmax+1))as `success_rate`, avgtime as `tiempo_prom`,avgmax+1 as `intentos` from viewqp2 order by topicorder;";
 			rs = stmt.executeQuery(query);
 			
 			// rs contiene una estructura de tipo SET que contiene todas
