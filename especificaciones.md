@@ -29,17 +29,17 @@
 ### Para esta consulta, se crea un primer archivo de vista 
 
 ```SQL
-create view viewqp as select appid,activityname,topicname,sum(result) as resum,MAX(attemptno)as maxat,avg(durationseconds)as time from activity_traces where(appid=41 or appid=38) group by user,activityname;
+create view viewqp as select topicorder,appid,activityname,topicname,sum(result) as resum,MAX(attemptno)as maxat,avg(durationseconds)as time from activity_traces where(appid=41 or appid=38) group by user,activityname;
 ```
 ### se crea luego un segundo archivo vista
 
 ```SQL
-create view viewqp2 as select appid,activityname,topicname,avg(resum) as avgresum,avg(maxat) as avgmax,avg(time)as avgtime from viewqp group by activityname;
+create view viewqp2 as select topicorder,appid,activityname,topicname,avg(resum) as avgresum,avg(maxat) as avgmax,avg(time)as avgtime from viewqp group by activityname;
 ```
 ### finalmente se hace la consulta a este segundo archivo de vista
 
 ```SQL
-select appid,topicname,activityname,(avgresum/(avgmax+1))as success_rate,avgtime,avgmax+1 as intentos from viewqp2 order by topicname; 
+select appid,topicname,activityname,(avgresum/(avgmax+1))as success_rate,avgtime,avgmax+1 as intentos from viewqp2 order by topicorder; 
 ```
 # GetAE666:
 
@@ -69,13 +69,13 @@ select appid,topicname,activityname,(avgresum/(avgmax+1))as success_rate,avgtime
 ### Para esta consulta, se crea un primer archivo de vista 
 
 ```SQL
-create view animated_def as select user,appid,topicname,parentname,sum(durationseconds) as sumtime,max(CAST(activityname AS UNSIGNED))+1 as maxline,count(distinct(activityname))as cant from activity_traces where(appid=3 or appid=35)group by parentname,user;
+create view animated_def as select topicorder,user,appid,topicname,parentname,sum(durationseconds) as sumtime,max(CAST(activityname AS UNSIGNED))+1 as maxline,count(distinct(activityname))as cant from activity_traces where(appid=3 or appid=35)group by parentname,user;
 
 ```
 
 ### finalmente se hace la consulta a este archivo de vista
 
 ```SQL
-select appid,parentname,topicname,avg(sumtime) as tiempo_promedio,(avg(cant)/max(maxline)) as nivel_de_completation from animated_def group by parentname order by topicname;
+select appid,parentname,topicname,avg(sumtime) as tiempo_promedio,(avg(cant)/max(maxline)) as nivel_de_completation from animated_def group by parentname order by topicorder;
 ```
 
