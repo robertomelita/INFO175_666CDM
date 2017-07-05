@@ -66,13 +66,13 @@ function main(res){
 	svg = d3.select("body").append("svg")
 		.attr("width", "100%")
 		.attr("height", height + margins.top + margins.bottom)
-		.attr("style", "background-color: #ffffff;");
+		.attr("style", "background-color: #F0FFFF;");
 	
 	//Despliegue de headers.
 	var headers = svg.selectAll(".headers").data(headerNames).enter().append("text")
 		.text(function(d){return d;})
 		.attr("class", "headers")
-		.attr("x", function(d,i){return (i*120) +(3*(i%5))+ padding.left})
+		.attr("x", function(d,i){return (i*160) +(3*(i%5))+ padding.left})
 		.attr("y", padding.top)
 		.attr("font-size", "18");
 	
@@ -98,20 +98,20 @@ function main(res){
 	.attr("class","linesUp")
 	.attr("points", function(d,i){return (padding.left-10) + "," + ((i+2)*(padding.top+minItemHeight)-20+10*i)
 	+ " " + (padding.left-10) + "," + ((i+2)*(padding.top+minItemHeight)-16+10*i) 
-	+ " " + (width*27/160) + ","+ ((i+2)*(padding.top+minItemHeight)-16+10*i) 
-	+ " " + (width*27/160) + ","+ ((i+2)*(padding.top+minItemHeight)-20+10*i) 
-	+ " " + (width*27/160) + ","+ ((i+2)*(padding.top+minItemHeight)-16+10*i) 
-	+ " " + (width*47/160) + ","+ ((i+2)*(padding.top+minItemHeight)-16+10*i) 
-	+ " " + (width*47/160) + ","+ ((i+2)*(padding.top+minItemHeight)-20+10*i) 
-	+ " " + (width*47/160) + ","+ ((i+2)*(padding.top+minItemHeight)-16+10*i) 
-	+ " " + (width*69/160) + ","+ ((i+2)*(padding.top+minItemHeight)-16+10*i) 
-	+ " " + (width*69/160) + ","+ ((i+2)*(padding.top+minItemHeight)-20+10*i) 
-	+ " " + (width*69/160) + ","+ ((i+2)*(padding.top+minItemHeight)-16+10*i) 
-	+ " " + (width*93/160) + ","+ ((i+2)*(padding.top+minItemHeight)-16+10*i) 
-	+ " " + (width*93/160) + ","+ ((i+2)*(padding.top+minItemHeight)-20+10*i) 
-	+ " " + (width*93/160) + ","+ ((i+2)*(padding.top+minItemHeight)-16+10*i) 
-	+ " " + (width*117/160) + ","+ ((i+2)*(padding.top+minItemHeight)-16+10*i) 
-	+ " " + (width*117/160) + ","+ ((i+2)*(padding.top+minItemHeight)-20+10*i)})
+	+ " " + (width*31/160) + ","+ ((i+2)*(padding.top+minItemHeight)-16+10*i) 
+	+ " " + (width*31/160) + ","+ ((i+2)*(padding.top+minItemHeight)-20+10*i) 
+	+ " " + (width*31/160) + ","+ ((i+2)*(padding.top+minItemHeight)-16+10*i) 
+	+ " " + (width*58/160) + ","+ ((i+2)*(padding.top+minItemHeight)-16+10*i) 
+	+ " " + (width*58/160) + ","+ ((i+2)*(padding.top+minItemHeight)-20+10*i) 
+	+ " " + (width*58/160) + ","+ ((i+2)*(padding.top+minItemHeight)-16+10*i) 
+	+ " " + (width*89/160) + ","+ ((i+2)*(padding.top+minItemHeight)-16+10*i) 
+	+ " " + (width*89/160) + ","+ ((i+2)*(padding.top+minItemHeight)-20+10*i) 
+	+ " " + (width*89/160) + ","+ ((i+2)*(padding.top+minItemHeight)-16+10*i) 
+	+ " " + (width*120/160) + ","+ ((i+2)*(padding.top+minItemHeight)-16+10*i) 
+	+ " " + (width*120/160) + ","+ ((i+2)*(padding.top+minItemHeight)-20+10*i) 
+	+ " " + (width*120/160) + ","+ ((i+2)*(padding.top+minItemHeight)-16+10*i) 
+	+ " " + (width*151/160) + ","+ ((i+2)*(padding.top+minItemHeight)-16+10*i) 
+	+ " " + (width*151/160) + ","+ ((i+2)*(padding.top+minItemHeight)-20+10*i)})
 	.attr("style","fill:none;stroke:rgb(96,125,139);stroke-width:1");
 	
 	//tooltip que sera mostrado al hacer mouseover sobre un circulo
@@ -128,7 +128,7 @@ function main(res){
 	
 	//Despliegue de los círculos.
 	var circles = svg.selectAll(".topicCircles").data(tiempo).enter().append("circle").attr("class","topicCircles");
-	circles.attr("cx", function(d,i){return ((i%4+1)*120 + 12*(i%4) +padding.left*1.5);})
+	circles.attr("cx", function(d,i){return ((i%4+1)*160 + 12*(i%4) +padding.left*1.5);})
 		.attr("cy", function(d,i){return ( 40 )*Math.floor(i/4)+padding.top*2.6 + Math.floor(i/4)*minItemHeight;})
 		.attr("r", function(d,i){if (d!=0) return timeScale(d); else return 0;})
 		.attr("fill", function(d,i){return colors[9-dificultad[i]];})
@@ -175,14 +175,14 @@ function main(res){
 	//Despliegue de la leyenda
 	var Cuadrados = svg.selectAll(".coloresLeyenda").data(colors).enter().append("rect")
 					.attr("class","coloresLeyenda")
-					.attr("x", 750)
+					.attr("x", 950)
 					.attr("y", function(d,i){return (120)+i*tCuadrados;})
 					.attr("width", function(d,i){return tCuadrados})
 					.attr("height", function(d,i){return tCuadrados})
 					.attr("style",function(d,i){ return "fill:"+(colors[9-i])+(";stroke-width:1;stroke:rgb(0,0,0)");});
 	var Leyenda = svg.selectAll(".textoLeyenda").data(colors).enter().append("text")
 					.text(function(d,i){return i*10+"% - "+(i*10+10)+"%";})
-					.attr("x", 778)
+					.attr("x", 978)
 					.attr("y", function(d,i){return (140)+i*tCuadrados;});
 	
 	var lName = ["Quizpet y Parson = Taza de Exito ", " Ejemplos = Nivel de Completacion"];
@@ -192,43 +192,43 @@ function main(res){
      						.enter()
      						.append("text")
      						.text(function(d){return d;})
-     						.attr("x", 740)
+     						.attr("x", 940)
      						.attr("y", function(d,i){return 60+(i*15)+ padding.top})
      						.attr("font-size", "15");
      						//.attr("font-family", "seriff");
     
     svg.append("text")
     						.text("Leyenda")
-    						.attr("x", 740)
+    						.attr("x", 940)
     						.attr("y", padding.top)
     						.attr("font-size", "24")
     						.attr("text-decoration", "underline");
     
     svg.append("circle")
-    						.attr("cx", 760)
+    						.attr("cx", 960)
     						.attr("cy", padding.top+430)
     						.attr("r", timeScale(2))
     						.attr("fill", "#aaaaaa");
     svg.append("circle")
-	.attr("cx", 760)
+	.attr("cx", 960)
 	.attr("cy", padding.top+500)
 	.attr("r", timeScale(150))
 	.attr("fill", "#aaaaaa");
     
 	svg.append("text")
 	.text("Tamaño:")
-	.attr("x", 740)
+	.attr("x", 940)
 	.attr("y", padding.top+400)
 	.attr("text-decoration", "underline");
 	
 	svg.append("text")
 	.text(function(){return "Tiempo Mínimo: "+ (Math.min.apply(Math,tiempo))+" segundos";})
-	.attr("x", 820)
+	.attr("x", 1020)
 	.attr("y", padding.top+435);
 	
 	svg.append("text")
 	.text(function(){return "Tiempo Máximo: "+ (Math.max.apply(Math, tiempo))+" segundos";})
-	.attr("x", 820)
+	.attr("x", 1020)
 	.attr("y", padding.top+502);
 	
 	
@@ -291,20 +291,20 @@ function invalidate() {
 			//console.log("extra = "+extra);
 			return (padding.left-10) + "," + ((i+2)*(padding.top+minItemHeight)-20+10*i+extra)
 			+ " " + (padding.left-10) + "," + ((i+2)*(padding.top+minItemHeight)-16+10*i+extra) 
-			+ " " + (width*27/160) + ","+ ((i+2)*(padding.top+minItemHeight)-16+10*i+extra) 
-			+ " " + (width*27/160) + ","+ ((i+2)*(padding.top+minItemHeight)-20+10*i+extra) 
-			+ " " + (width*27/160) + ","+ ((i+2)*(padding.top+minItemHeight)-16+10*i+extra) 
-			+ " " + (width*47/160) + ","+ ((i+2)*(padding.top+minItemHeight)-16+10*i+extra) 
-			+ " " + (width*47/160) + ","+ ((i+2)*(padding.top+minItemHeight)-20+10*i+extra) 
-			+ " " + (width*47/160) + ","+ ((i+2)*(padding.top+minItemHeight)-16+10*i+extra) 
-			+ " " + (width*69/160) + ","+ ((i+2)*(padding.top+minItemHeight)-16+10*i+extra) 
-			+ " " + (width*69/160) + ","+ ((i+2)*(padding.top+minItemHeight)-20+10*i+extra) 
-			+ " " + (width*69/160) + ","+ ((i+2)*(padding.top+minItemHeight)-16+10*i+extra) 
-			+ " " + (width*93/160) + ","+ ((i+2)*(padding.top+minItemHeight)-16+10*i+extra) 
-			+ " " + (width*93/160) + ","+ ((i+2)*(padding.top+minItemHeight)-20+10*i+extra) 
-			+ " " + (width*93/160) + ","+ ((i+2)*(padding.top+minItemHeight)-16+10*i+extra) 
-			+ " " + (width*117/160) + ","+ ((i+2)*(padding.top+minItemHeight)-16+10*i+extra) 
-			+ " " + (width*117/160) + ","+ ((i+2)*(padding.top+minItemHeight)-20+10*i+extra)
+			+ " " + (width*31/160) + ","+ ((i+2)*(padding.top+minItemHeight)-16+10*i+extra) 
+			+ " " + (width*31/160) + ","+ ((i+2)*(padding.top+minItemHeight)-20+10*i+extra) 
+			+ " " + (width*31/160) + ","+ ((i+2)*(padding.top+minItemHeight)-16+10*i+extra) 
+			+ " " + (width*58/160) + ","+ ((i+2)*(padding.top+minItemHeight)-16+10*i+extra) 
+			+ " " + (width*58/160) + ","+ ((i+2)*(padding.top+minItemHeight)-20+10*i+extra) 
+			+ " " + (width*58/160) + ","+ ((i+2)*(padding.top+minItemHeight)-16+10*i+extra) 
+			+ " " + (width*89/160) + ","+ ((i+2)*(padding.top+minItemHeight)-16+10*i+extra) 
+			+ " " + (width*89/160) + ","+ ((i+2)*(padding.top+minItemHeight)-20+10*i+extra) 
+			+ " " + (width*89/160) + ","+ ((i+2)*(padding.top+minItemHeight)-16+10*i+extra) 
+			+ " " + (width*120/160) + ","+ ((i+2)*(padding.top+minItemHeight)-16+10*i+extra) 
+			+ " " + (width*120/160) + ","+ ((i+2)*(padding.top+minItemHeight)-20+10*i+extra) 
+			+ " " + (width*120/160) + ","+ ((i+2)*(padding.top+minItemHeight)-16+10*i+extra) 
+			+ " " + (width*151/160) + ","+ ((i+2)*(padding.top+minItemHeight)-16+10*i+extra) 
+			+ " " + (width*151/160) + ","+ ((i+2)*(padding.top+minItemHeight)-20+10*i+extra)
 		});
 	var activityCircleSpacing = 75;
 	for(var l = 0; l<expanded.length; l++){
@@ -325,14 +325,14 @@ function invalidate() {
 								lastID = dataXTopic[l][i].appid;
 								//console.log(dataXTopic[l][i].topicname);
 								if(dataXTopic[l][i].topicname == "output_formatting" && !bool){
-									extraX+=132;
+									extraX+=173;
 									bool = true;
 								}
-								extraX +=132	;
+								extraX +=173	;
 								
 							}
 							//console.log(120+padding.left*1.5 + extraX);
-							return 120+padding.left*1.5 + extraX;	
+							return 160+padding.left*1.5 + extraX;	
 						});
 			lastID = "41";
 			var extra = 0;
@@ -384,14 +384,14 @@ function invalidate() {
 						lastID = dataXTopic[l][i].appid;
 						//console.log(dataXTopic[l][i].topicname);
 						if(dataXTopic[l][i].topicname == "output_formatting" && !bool){
-							extraX+=132;
+							extraX+=173;
 							bool = true;
 						}
-						extraX +=132	;
+						extraX +=173	;
 						
 					}
 					//console.log(120+padding.left*1.5 + extraX);
-					return 120+padding.left*1.5 + extraX;	
+					return 160+padding.left*1.5 + extraX;	
 				});
 			lastID = "41";
 			
