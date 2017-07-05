@@ -1,5 +1,28 @@
-body{
-	color: white;
+html, body{
+	background-color: white;
+	font-family: 'PT Sans', sans-serif;
+	margin:0 0 0 0;
+	
+}
+header{
+	height: 150px;
+	background-color: #16AFCA;
+	margin:0 0 0 0;
+	position: absolute;
+	width: 100%;
+}
+#hola{
+	text-align: left;
+	padding-left: 50px;
+	
+}
+
+
+svg{
+	background-color: #fff;
+	position: relative;
+	top: 150px;
+	padding-left: 10px;
 }
 rect.bordered {
         stroke: #E6E6E6;
@@ -21,5 +44,5 @@ rect.bordered {
       }
       
 h1{
-	color: black;
+	color: white;
 }
