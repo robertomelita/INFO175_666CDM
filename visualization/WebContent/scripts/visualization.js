@@ -1,9 +1,13 @@
 var data=null;
+var colorblind = false;
 //Variables estáticas, predefinidas para mostrar la visualizacion.
 
 //Colores y titulos a ocupar en la visualizacion.
 var headerNames = ["Tópico", "Quizpet", "Parsons", "Animated Ex", "Annotated Ex"];
 var colors = ['#00ff00','#73ff00','#a3ff00','#cbff00','#eeff00','#ffeb00','#ffc200','#ff9600','#ff6500','#ff0000'];
+var colorsBlind = ['#313695','#4575b4','#74add1',"#abd9e9",'#e0f3f8','#fee090','#fdae61','#f46d43','#d73027','#a50026'];
+var colorsNotBlind = ['#00ff00','#73ff00','#a3ff00','#cbff00','#eeff00','#ffeb00','#ffc200','#ff9600','#ff6500','#ff0000'];
+
 
 //arreglo conteniendo informacion acerca de cual topico esta expandido y cual no - 1: expandido, 0: cerrado
 var expanded = new Array();
@@ -88,7 +92,7 @@ function main(res){
 			}
 			return ( (i+2)*(padding.top+minItemHeight-25))+(minItemHeight)*i;
 			})
-		.attr("font-size", "14");
+		.attr("font-size", "18");
 		
 	//var lines = svg.selectAll(".lines").data(topicNames).enter().append("line").attr("x1", padding.left).attr("y1", function(d,i){return ( 20+(i+2)*(padding.top+minItemHeight));})
 	//.attr("x2", width*5/8).attr("y2", function(d,i){return ( 20+(i+2)*(padding.top+minItemHeight));}).attr("style","stroke:rgb(96,125,139);stroke-width:1");
@@ -179,11 +183,13 @@ function main(res){
 					.attr("y", function(d,i){return (120)+i*tCuadrados;})
 					.attr("width", function(d,i){return tCuadrados})
 					.attr("height", function(d,i){return tCuadrados})
-					.attr("style",function(d,i){ return "fill:"+(colors[9-i])+(";stroke-width:1;stroke:rgb(0,0,0)");});
+					.attr("fill",function(d,i){ return colors[9-i];})
+					.attr("style", "stroke-width:1;stroke:rgb(0,0,0);");
 	var Leyenda = svg.selectAll(".textoLeyenda").data(colors).enter().append("text")
 					.text(function(d,i){return i*10+"% - "+(i*10+10)+"%";})
 					.attr("x", 978)
-					.attr("y", function(d,i){return (140)+i*tCuadrados;});
+					.attr("y", function(d,i){return (140)+i*tCuadrados;})
+					.attr("font-size", "18");
 	
 	var lName = ["Quizpet y Parson = Taza de Exito ", " Ejemplos = Nivel de Completacion"];
 	
@@ -194,7 +200,7 @@ function main(res){
      						.text(function(d){return d;})
      						.attr("x", 940)
      						.attr("y", function(d,i){return 60+(i*15)+ padding.top})
-     						.attr("font-size", "15");
+     						.attr("font-size", "18");
      						//.attr("font-family", "seriff");
     
     svg.append("text")
@@ -219,19 +225,45 @@ function main(res){
 	.text("Tamaño:")
 	.attr("x", 940)
 	.attr("y", padding.top+400)
-	.attr("text-decoration", "underline");
+	.attr("text-decoration", "underline")
+	.attr("font-size", "18");
 	
 	svg.append("text")
 	.text(function(){return "Tiempo Mínimo: "+ (Math.min.apply(Math,tiempo))+" segundos";})
 	.attr("x", 1020)
-	.attr("y", padding.top+435);
+	.attr("y", padding.top+435).attr("font-size", "18");
 	
 	svg.append("text")
 	.text(function(){return "Tiempo Máximo: "+ (Math.max.apply(Math, tiempo))+" segundos";})
 	.attr("x", 1020)
-	.attr("y", padding.top+502);
+	.attr("y", padding.top+502).attr("font-size", "18");
 	
-	
+	var butt = svg.append("g").attr("transform", "translate(1000, 600)")
+	.on("mouseover",function(){
+		d3.selectAll("#botonrect").transition().attr("fill", "#ffffff");
+		d3.selectAll("#botontext").transition().attr("fill", "#F44336")
+		d3.selectAll("#botonrectshadow").transition().attr("x", 0).attr("y", 0);
+	})
+	.on("mouseout",function(){
+		d3.selectAll("#botonrect").transition().attr("fill", "#F44336");
+		d3.selectAll("#botontext").transition().attr("fill", "white");
+		d3.selectAll("#botonrectshadow").transition().attr("x", -2).attr("y", 2);
+	})
+	.on("click",function(){
+		if (!colorblind){
+			d3.selectAll("#botontext").transition().text("Modo Daltónico: ON");
+			toColorblindON();
+			colorblind = true;
+		}else{
+			d3.selectAll("#botontext").transition().text("Modo Daltónico: OFF");
+			toColorblindOFF();
+			colorblind = false;
+		}
+	});
+	butt.append("rect").attr("width", 180).attr("height", 50).attr("x", -2).attr("y",2).attr("id", "botonrectshadow");
+	butt.append("rect").attr("width", 180).attr("height", 50).attr("id", "botonrect").attr("fill","#F44336");
+	butt.append("text").text("Modo Daltónico: OFF").attr("font-size",18).attr("fill", "white").attr("id", "botontext")
+    .style("z-index", "100").attr("x", 13).attr("y",30);
 					
 }
 
@@ -414,9 +446,9 @@ function invalidate() {
 			})
 			.text(function(d,i){return dataXTopic[l][i].activityname;})
 			.attr("text-anchor","middle")
-			.attr("font-size", "13")
+			.attr("font-size", "14")
 			.attr("style", "fill: black;" +
-					"text-shadow: 2px 2px 2px white;").attr("opacity","0");
+					"text-shadow: 3px 3px 3px white;").attr("opacity","0");
 			
 						
 		}
@@ -481,6 +513,24 @@ function invalidate() {
 		
 	}
 }
+
+function toColorblindON(){
+	colors = colorsBlind;
+	d3.selectAll(".coloresLeyenda").transition().attr("fill",function(d,i){ return colors[9-i];});
+	d3.selectAll(".topicCircles").transition().attr("fill", function(d,i){return colors[9-dificultad[i]];});
+	//invalidate();
+
+}
+
+function toColorblindOFF(){
+	colors = colorsNotBlind;
+	d3.selectAll(".coloresLeyenda").transition().attr("fill",function(d,i){ return colors[9-i];});
+	d3.selectAll(".topicCircles").transition().attr("fill", function(d,i){return colors[9-dificultad[i]];});
+	//invalidate();
+}
+
+
+
 function hele(res){
 	data=res;
 }
