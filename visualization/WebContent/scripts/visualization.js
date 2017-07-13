@@ -1,7 +1,9 @@
-var data=null;
-var colorblind = false;
 //Variables estáticas, predefinidas para mostrar la visualizacion.
 
+//json proveniente de la consulta
+var data=null;
+//Booleando que indica si se estan en modo ColorBlind o no.
+var colorblind = false;
 //Colores y titulos a ocupar en la visualizacion.
 var headerNames = ["Tópico", "Quizpet", "Parsons", "Animated Ex", "Annotated Ex"];
 var colors = ['#00ff00','#73ff00','#a3ff00','#cbff00','#eeff00','#ffeb00','#ffc200','#ff9600','#ff6500','#ff0000'];
@@ -238,6 +240,8 @@ function main(res){
 	.attr("x", 1020)
 	.attr("y", padding.top+502).attr("font-size", "18");
 	
+	
+	//Boton para activar el modo Colorblind
 	var butt = svg.append("g").attr("transform", "translate(1000, 600)")
 	.on("mouseover",function(){
 		d3.selectAll("#botonrect").transition().attr("fill", "#ffffff");
@@ -338,10 +342,9 @@ function invalidate() {
 			+ " " + (width*151/160) + ","+ ((i+2)*(padding.top+minItemHeight)-16+10*i+extra) 
 			+ " " + (width*151/160) + ","+ ((i+2)*(padding.top+minItemHeight)-20+10*i+extra)
 		});
-	var activityCircleSpacing = 75;
+	
+	//Una vez expandido, crea los circulos de las actividades correspondientes en cada  topico
 	for(var l = 0; l<expanded.length; l++){
-		
-		
 		if (expanded[l] == 1){
 			var extraX = 0;
 			var extraY = 0;
@@ -351,11 +354,9 @@ function invalidate() {
 						.attr("class", "c"+l)
 						.attr("stroke","black")
 						.attr("cx", function(d,i){
-							//console.log(i)
-						
+							
 							if (lastID != dataXTopic[l][i].appid){
 								lastID = dataXTopic[l][i].appid;
-								//console.log(dataXTopic[l][i].topicname);
 								if(dataXTopic[l][i].topicname == "output_formatting" && !bool){
 									extraX+=173;
 									bool = true;
@@ -363,7 +364,6 @@ function invalidate() {
 								extraX +=173	;
 								
 							}
-							//console.log(120+padding.left*1.5 + extraX);
 							return 160+padding.left*1.5 + extraX;	
 						});
 			lastID = "41";
@@ -402,7 +402,7 @@ function invalidate() {
 								(d3.event.pageY-10)+"px").style("left",(d3.event.pageX+10)+"px");})
 						.on("mouseout", function(){return tooltip.style("visibility", "hidden");});
 			
-			
+			//Crea los labels que acompañaran a los circulos de las actividades
 			var extraX = 0;
 			var extraY = 0;
 			var lastID = "41";
@@ -410,11 +410,9 @@ function invalidate() {
 			
 			var tex = svg.selectAll(".t"+l).data(dataXTopic[l]).enter().append("text").attr("class","t"+l)
 				.attr("x",function(d,i){
-					//console.log(i)
 					
 					if (lastID != dataXTopic[l][i].appid){
 						lastID = dataXTopic[l][i].appid;
-						//console.log(dataXTopic[l][i].topicname);
 						if(dataXTopic[l][i].topicname == "output_formatting" && !bool){
 							extraX+=173;
 							bool = true;
@@ -422,7 +420,6 @@ function invalidate() {
 						extraX +=173	;
 						
 					}
-					//console.log(120+padding.left*1.5 + extraX);
 					return 160+padding.left*1.5 + extraX;	
 				});
 			lastID = "41";
@@ -451,11 +448,12 @@ function invalidate() {
 					"text-shadow: 3px 3px 3px white;").attr("opacity","0");
 			
 						
-		}
-		else{
+		}else{
 			svg.selectAll(".c"+l).remove();
 			svg.selectAll(".t"+l).remove();
 		}
+		
+		//Tooltip que sera mostrada para los circulos de las actividades
 		var tooltip = d3.select("body")
 	    .append("div")
 	    .attr("class","activity_tool")
@@ -465,8 +463,9 @@ function invalidate() {
 	    .style("color", "black")
 	    .style("background","rgba(255,255,255, .8)")
 	    .text("");
+		
+		//Mueve los circulos a su posicion correcta en caso de que haya otro topico expandido
 		svg.selectAll(".c"+l).transition().attr("cy", function(d,i){
-			//console.log(i);							
 			if (lastID == dataXTopic[l][i].appid && i != 0){
 				extraY +=80;
 			}else{
@@ -486,7 +485,7 @@ function invalidate() {
 		
 		})
 		.attr("opacity", "1").duration("600");
-		
+		//Mueve los labels a su posicion correcta en caso de que haya otro topico expandido
 		svg.selectAll(".t"+l).transition().attr("y", function(d,i){
 			//console.log(i);							
 			if (lastID == dataXTopic[l][i].appid && i != 0){
@@ -509,11 +508,10 @@ function invalidate() {
 		})
 		.attr("opacity", "1").duration("600");
 		
-		//	svg.selectAll(".h"+l).data(dataXTopic[l]).enter().append("text").attr("x",).attr("y",)
 		
 	}
 }
-
+//funcion que activa el modo ColorBlind
 function toColorblindON(){
 	colors = colorsBlind;
 	d3.selectAll(".coloresLeyenda").transition().attr("fill",function(d,i){ return colors[9-i];});
@@ -521,7 +519,7 @@ function toColorblindON(){
 	//invalidate();
 
 }
-
+//funcion que desactiv el modo Colorblind
 function toColorblindOFF(){
 	colors = colorsNotBlind;
 	d3.selectAll(".coloresLeyenda").transition().attr("fill",function(d,i){ return colors[9-i];});
@@ -530,16 +528,19 @@ function toColorblindOFF(){
 }
 
 
-
+//Funcion auxiliar para retener los datos mientras se realiza la segunda consulta
 function hele(res){
 	data=res;
 }
+
 function loadData(){
-	$.getJSON("http://localhost:8080/Visualization_req3/GetAE666",function(data){hele(data)});
-	$.getJSON("http://localhost:8080/Visualization_req3/GetQP666",function(data){main(data)});
+	$.getJSON("http://146.83.216.206/INFO175_Servicios/GetAE666",function(data){hele(data)});
+	$.getJSON("http://146.83.216.206/INFO175_Servicios/GetQP666",function(data){main(data)});
 }
+
 $(window).ready(function(){loadData();});
 
+//Hace mayuscua la primera letra de un sttring (para el nombre de los topicos)
 function capitalize(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }

@@ -2,9 +2,7 @@ html, body{
 	background-color: #aaaaaa;
 	font-family: 'PT Sans', sans-serif;
 	margin:0 0 0 0;
-	zoom: .855;
-    -moz-transform: scale(1);
-    -moz-transform-origin: 0 0;
+	
 }
 header{
 	height: 150px;
