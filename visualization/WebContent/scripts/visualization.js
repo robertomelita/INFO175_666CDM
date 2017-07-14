@@ -497,11 +497,36 @@ function toColorblindOFF(){
 //Funcion auxiliar para guardar en "data" la primera consulta y realizar la segunda consulta
 function hele(res){
 	data=data.concat(res);
-	$.getJSON("http://146.83.216.206/INFO175_Servicios/GetQP666",function(data){main(data)});
+	//var p = $.getJSON("http://146.83.216.206/INFO175_Servicios/GetQP666",function(data){main(data)});
+	//setTimeout(function(){ p.abort(); alert("Falló la conexion al servidor") }, 6000);
+	$.ajax({
+		  dataType: "json",
+		  url: "http://126.83.216.206/INFO175_Servicios/GetQP666",
+		  data: data,
+		  success: function(data){main(data)},
+		  timeout: 6000
+		}).fail( function( xhr, status ) {
+		    if( status == "timeout" ) {
+		    	alert("Falló la conexion al servidor");
+		    }
+		});
 }
+
 //Realiza la primera consulta
 function loadData(){
-	$.getJSON("http://146.83.216.206/INFO175_Servicios/GetAE666",function(data){hele(data)});
+	//var p = $.getJSON("http://146.83.216.206/INFO175_Servicios/GetAE666",function(data){hele(data)});
+	$.ajax({
+		  dataType: "json",
+		  url: "http://126.83.216.206/INFO175_Servicios/GetAE666",
+		  data: data,
+		  success: function(data){hele(data)},
+		  timeout: 6000
+		}).fail( function( xhr, status ) {
+		    if( status == "timeout" ) {
+		    	alert("Falló la conexion al servidor");
+		    }
+
+		});
 }
 
 $(window).ready(function(){loadData();});
