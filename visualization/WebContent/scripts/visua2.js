@@ -10,7 +10,6 @@ function inicializacionTopics(data){
 		if(data[i].topicname!=topicNames[cont]){
 			cont++;
 			topicNames.push(data[i].topicname);
-			console.log(data[i].topicname);
 		}
 	}
 	while(topicNames[0]!=topicNames[topicNames.length-1]){
@@ -66,7 +65,6 @@ function ordenarData(data){
 		}
 		dataXTopic.push(aux);
 	}
-	console.log(dataXTopic);
 }
 
 
