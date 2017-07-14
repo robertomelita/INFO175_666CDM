@@ -53,6 +53,9 @@ function rate_completacion(data){
 		}
 	}
 }
+
+//Ordena los datos para que estos puedan ser facilmente procesados por la visualizacion
+//(es conveniente para mostrar la informacion de las actividades de cada topico)
 function ordenarData(data){
 	for(i=0;i<topicNames.length;i++){
 		var aux = []; 
