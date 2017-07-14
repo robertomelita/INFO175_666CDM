@@ -1,7 +1,10 @@
 function main(res){
 	data=data.concat(res);	//une la data de las 2 consultas
-	
 	//llamado a funciones de inicializacion
+	if(data==null || data.length==0){
+		alert("Error con la base de datos, se conecta pero entrega\nno entrega los datos.");
+		return;
+	}
 	inicializacionTopics(data);
 	tiempoTopics(data);
 	rate_completacion(data);
@@ -501,7 +504,7 @@ function hele(res){
 	//setTimeout(function(){ p.abort(); alert("Falló la conexion al servidor") }, 6000);
 	$.ajax({
 		  dataType: "json",
-		  url: "http://126.83.216.206/INFO175_Servicios/GetQP666",
+		  url: "http://146.83.216.206/INFO175_Servicios/GetQP666",
 		  data: data,
 		  success: function(data){main(data)},
 		  timeout: 6000
@@ -517,7 +520,7 @@ function loadData(){
 	//var p = $.getJSON("http://146.83.216.206/INFO175_Servicios/GetAE666",function(data){hele(data)});
 	$.ajax({
 		  dataType: "json",
-		  url: "http://126.83.216.206/INFO175_Servicios/GetAE666",
+		  url: "http://146.83.216.206/INFO175_Servicios/GetAE666",
 		  data: data,
 		  success: function(data){hele(data)},
 		  timeout: 6000
