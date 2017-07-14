@@ -1,9 +1,3 @@
-var topicNames = [];
-var tiempo = [];
-var codigoActivity = [41,38,35,3];
-var dificultad=[];
-var dataXTopic=[];
-
 function inicializacionTopics(data){
 	cont = 0;
 	topicNames.push(data[0].topicname)
@@ -11,6 +5,7 @@ function inicializacionTopics(data){
 		if(data[i].topicname!=topicNames[cont]){
 			cont++;
 			topicNames.push(data[i].topicname);
+			console.log(data[i].topicname);
 		}
 	}
 	while(topicNames[0]!=topicNames[topicNames.length-1]){
@@ -18,8 +13,7 @@ function inicializacionTopics(data){
 	}
 	topicNames.pop();
 	console.log(data);
-	console.log(topicNames);
-	tiempoTopics(data);
+	//console.log(topicNames);
 }
 
 function tiempoTopics(data){
