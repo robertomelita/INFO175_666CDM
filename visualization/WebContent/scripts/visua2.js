@@ -1,3 +1,8 @@
+//Este archivo contiene principalmente incializaciones de las variables y arreglos a ocupar en la visualizacion
+
+
+//Inicializa el arreglo topicNames con los nombres de los topicos en la consulta,
+//esto para mostrar los nombres de los topicos
 function inicializacionTopics(data){
 	cont = 0;
 	topicNames.push(data[0].topicname)
@@ -12,10 +17,9 @@ function inicializacionTopics(data){
 		topicNames.pop();
 	}
 	topicNames.pop();
-	console.log(data);
-	//console.log(topicNames);
 }
 
+//Inicializa el arrelgo tiempo con el promedio de tiempo por topico y actividad
 function tiempoTopics(data){
 	for(i=0;i<topicNames.length;i++){
 		for(k=0;k<4;k++){
@@ -31,10 +35,10 @@ function tiempoTopics(data){
 			else tiempo.push(0);
 		}
 	}
-	console.log(tiempo)
-	ratesfe(data);
 }
-function ratesfe(data){
+
+//Inicializa el arreglo dificultad con los promedios de success rate y completacion
+function rate_completacion(data){
 	for(i=0;i<topicNames.length;i++){
 		for(k=0;k<4;k++){
 			cont=0;
@@ -49,10 +53,8 @@ function ratesfe(data){
 			else dificultad.push(0);
 		}
 	}
-	console.log(dificultad);
-	quezada(data);
 }
-function quezada(data){
+function ordenarData(data){
 	for(i=0;i<topicNames.length;i++){
 		var aux = []; 
 		for(k=0;k<4;k++){

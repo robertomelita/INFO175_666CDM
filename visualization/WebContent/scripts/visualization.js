@@ -1,7 +1,12 @@
 function main(res){
-	data=data.concat(res);
+	data=data.concat(res);	//une la data de las 2 consultas
+	
+	//llamado a funciones de inicializacion
 	inicializacionTopics(data);
 	tiempoTopics(data);
+	rate_completacion(data);
+	ordenarData(data);
+	
 	var cont1 = 0;
 	var cont2 = 0;
 	var idd = "41"
@@ -489,19 +494,19 @@ function toColorblindOFF(){
 }
 
 
-//Funcion auxiliar para retener los datos mientras se realiza la segunda consulta
+//Funcion auxiliar para guardar en "data" la primera consulta y realizar la segunda consulta
 function hele(res){
 	data=data.concat(res);
 	$.getJSON("http://146.83.216.206/INFO175_Servicios/GetQP666",function(data){main(data)});
 }
-
+//Realiza la primera consulta
 function loadData(){
 	$.getJSON("http://146.83.216.206/INFO175_Servicios/GetAE666",function(data){hele(data)});
 }
 
 $(window).ready(function(){loadData();});
 
-//Hace mayuscua la primera letra de un sttring (para el nombre de los topicos)
+//Hace mayuscua la primera letra de un string (para el nombre de los topicos)
 function capitalize(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
